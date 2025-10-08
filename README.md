@@ -1,161 +1,222 @@
-# airbnb-clone-project
+🏡 Airbnb Clone Backend Project
 
-This project is a simplified version of Airbnb focused on backend development.  
-The goal is to build a booking platform that includes user registration, property listings, bookings, reviews, and payments.
+This project is a simplified Airbnb clone focused on backend development using Django and PostgreSQL. It simulates the core functionalities of a booking platform, including user management, property listings, bookings, reviews, and payments.
 
-## Project Goals
-- Learn how to build scalable backend systems.
-- Work in a team using GitHub for collaboration.
-- Understand database design and API security.
-- Set up and use CI/CD pipelines for deployment.
+📌 Project Goals
 
-## Tech Stack
-- Django (Backend Framework)
-- MySQL/PostgreSQL (Database)
-- GraphQL (Optional API Layer)
-- Docker (Containerization)
-- GitHub Actions (CI/CD Pipeline)
+Build a scalable backend system using Django.
 
-## Team Roles
+Practice team collaboration with GitHub.
 
-Here are the key roles involved in this project and their responsibilities:
+Learn about database design and API security best practices.
 
-- **Backend Developer**: Builds the API logic, handles data flow between the frontend and the database, and ensures performance and security on the server side.
+Implement CI/CD pipelines for automated testing and deployment.
 
-- **Database Administrator (DBA)**: Designs and manages the database structure, ensures data integrity, and optimizes database performance.
+🚀 Tech Stack
+Technology	Purpose
+Django	Python web framework for backend and API development
+PostgreSQL / MySQL	Relational database to store structured data
+GraphQL (optional)	Flexible API query language for efficient data fetching
+Docker	Containerization to ensure consistent environments
+GitHub Actions	CI/CD automation for testing and deployment
+👥 Team Roles
+Role	Responsibilities
+Backend Developer	Develops API logic, manages data flow between frontend and database, ensures performance and security.
+Database Administrator (DBA)	Designs, manages, and optimizes the database structure and data integrity.
+DevOps Engineer	Configures and maintains CI/CD pipelines, Docker containers, and cloud deployments.
+Security Engineer	Implements authentication, authorization, encryption, and monitors potential threats.
+Project Manager	Coordinates tasks, sets deadlines, ensures smooth team workflow.
+⚙️ Technology Stack
+🐍 Django
 
-- **DevOps Engineer**: Sets up and maintains CI/CD pipelines, Docker containers, and deployment environments.
+A high-level Python web framework used to build backend APIs and handle business logic.
 
-- **Security Engineer**: Implements best practices for securing APIs, manages authentication and authorization systems, and monitors threats.
+🛢 PostgreSQL / MySQL
 
-- **Project Manager**: Coordinates the team, sets goals and timelines, and ensures tasks are completed on schedule.
+Relational databases used for storing and managing structured data such as users, properties, and bookings.
 
-## Technology Stack
+🔎 GraphQL (Optional)
 
-Here are the main technologies used in this project:
+An advanced API query language allowing clients to request only the data they need.
 
-- **Django**: A Python web framework used to build and manage the backend and APIs.
+🐳 Docker
 
-- **PostgreSQL** (or **MySQL**): A relational database system to store and manage data such as users, bookings, and properties.
+Used to containerize the application, making it easy to run and deploy in any environment.
 
-- **GraphQL**: (Optional) An advanced API query language for flexible data fetching.
+⚙️ GitHub Actions
 
-- **Docker**: Used to containerize the app so it runs the same in all environments.
+Automates testing and deployment workflows using CI/CD pipelines.
 
-- **GitHub Actions**: Automates testing and deployment through a CI/CD pipeline.
+ Database Design
+📘 Entities and Fields
+1. User
 
+id (Primary Key)
 
-## Database Design
+name
 
-The project will include the following main entities:
+email
 
-### 1. User
-- `id` (Primary Key)
-- `name`
-- `email`
-- `password`
-- `role` (e.g., guest or host)
+password
 
-### 2. Property
-- `id` (Primary Key)
-- `title`
-- `description`
-- `location`
-- `price_per_night`
-- `host_id` (Foreign Key to User)
+role (e.g., guest or host)
 
-### 3. Booking
-- `id` (Primary Key)
-- `user_id` (Foreign Key to User)
-- `property_id` (Foreign Key to Property)
-- `start_date`
-- `end_date`
-- `total_price`
+2. Property
 
-### 4. Review
-- `id` (Primary Key)
-- `user_id` (Foreign Key to User)
-- `property_id` (Foreign Key to Property)
-- `rating`
-- `comment`
+id (Primary Key)
 
-### 5. Payment
-- `id` (Primary Key)
-- `booking_id` (Foreign Key to Booking)
-- `amount`
-- `payment_method`
-- `payment_status`
+title
 
-### Relationships:
-- A **User** can list many **Properties** (as a host).
-- A **User** can book many **Properties** (as a guest).
-- A **Booking** is linked to one **User** and one **Property**.
-- A **Review** is made by a **User** for a **Property**.
-- A **Payment** is tied to a **Booking**.
+description
 
+location
 
-## Feature Breakdown
+price_per_night
 
-Here are the main features planned for the Airbnb Clone project:
+host_id (Foreign Key → User)
 
-### 1. User Management
-Users can sign up, log in, and manage their profiles. Roles like host and guest determine their access level and permissions.
+3. Booking
 
-### 2. Property Management
-Hosts can add, update, and delete property listings with details like location, price, and availability.
+id (Primary Key)
 
-### 3. Booking System
-Guests can search for properties, view availability, and make bookings for specific dates.
+user_id (Foreign Key → User)
 
-### 4. Reviews and Ratings
-After a stay, guests can leave reviews and rate their experience with a property.
+property_id (Foreign Key → Property)
 
-### 5. Payment Processing
-Secure payment handling for bookings using different payment methods. Tracks payment status and history.
+start_date
 
-### 6. Admin Panel (Optional)
-Admins can view all users, properties, and bookings to manage platform activity and resolve issues.
+end_date
 
+total_price
 
-## API Security
+4. Review
 
-To keep our backend safe and reliable, we will use the following security measures:
+id (Primary Key)
 
-### 1. Authentication
-Only registered users can access protected routes. We will use token-based authentication (like JWT) to verify users.
+user_id (Foreign Key → User)
 
-### 2. Authorization
-Different users have different permissions. For example, only hosts can add properties, and only guests can make bookings.
+property_id (Foreign Key → Property)
 
-### 3. Input Validation
-We will validate all user inputs to prevent attacks like SQL injection and ensure data is clean before processing.
+rating
 
-### 4. Rate Limiting
-To avoid abuse and spamming of the API, we’ll limit how many requests a user can make in a short time.
+comment
 
-### 5. Secure Payments
-Sensitive payment data will be encrypted and processed securely to protect user financial information.
+5. Payment
 
-**Why Security Matters:**
-- It protects user accounts and personal data.
-- It ensures only authorized actions are allowed.
-- It keeps the platform trusted and safe for everyone.
+id (Primary Key)
 
+booking_id (Foreign Key → Booking)
 
-## CI/CD Pipeline
+amount
 
-### What is CI/CD?
-CI/CD stands for Continuous Integration and Continuous Deployment. It helps developers automatically test and deploy code changes faster and with fewer errors.
+payment_method
 
-### Why It’s Important:
-- Saves time by automating builds, tests, and deployments.
-- Catches bugs early through automated testing.
-- Makes the development process more efficient and reliable.
+payment_status
 
-### Tools We’ll Use:
-- **GitHub Actions**: Automates testing and deployment workflows directly from GitHub.
-- **Docker**: Ensures the app runs the same in every environment by containerizing it.
-- **Heroku / Render / AWS** (optional): Platforms we can use for deploying the app online.
+🔗 Entity Relationships
 
+A User can be a host (own many Properties) or a guest (book Properties).
 
-A backend project simulating the core features of Airbnb: user management, bookings, reviews, and payments, built with Django and MySQL.
+A User can leave multiple Reviews.
+
+A Property belongs to one User (host) but can have many Bookings and Reviews.
+
+A Booking links a User and a Property.
+
+A Payment is made for one Booking.
+
+✨ Feature Breakdown
+1. User Management
+
+Sign up, log in, and profile management
+
+Role-based access: host and guest
+
+2. Property Management
+
+Hosts can create, update, and delete property listings
+
+Include property details like location, price, and availability
+
+3. Booking System
+
+Guests can search properties by location and date
+
+Book available properties for specific time frames
+
+4. Reviews and Ratings
+
+Guests can leave reviews and star ratings after a completed booking
+
+5. Payment Processing
+
+Payments for bookings with status tracking and method selection
+
+Secure and encrypted payment flow
+
+6. Admin Panel (Optional)
+
+Admins can manage users, properties, bookings, and monitor platform activity
+
+🔐 API Security
+
+To ensure the backend is secure and stable:
+
+1. Authentication
+
+Token-based authentication (e.g., JWT) for secure login sessions
+
+2. Authorization
+
+Role-based access control: Only hosts can create properties; only guests can book
+
+3. Input Validation
+
+Sanitize and validate user inputs to prevent SQL injection and data corruption
+
+4. Rate Limiting
+
+Prevent abuse by limiting how many requests users can make per minute/hour
+
+5. Secure Payments
+
+Use encryption and secure protocols for payment handling
+
+🛡 Why Security Matters
+
+Protects user data and platform integrity
+
+Prevents unauthorized access and abuse
+
+Builds trust with users
+
+🔄 CI/CD Pipeline
+ What is CI/CD?
+
+Continuous Integration/Continuous Deployment automates testing and deployment to deliver updates quickly and reliably.
+
+✅ Benefits
+
+Catches bugs early via automated tests
+
+Speeds up the development cycle
+
+Ensures code quality and consistent deployments
+
+🛠 Tools Used
+
+GitHub Actions: Run tests and deploy automatically on code pushes
+
+Docker: Create consistent environments for development, testing, and production
+
+Deployment Platforms (Optional):
+
+Heroku
+
+Render
+
+AWS
+
+📦 Summary
+
+A backend-focused project simulating the core functionalities of Airbnb. Built with Django and PostgreSQL, this project includes role-based user access, property listings, bookings, reviews, payments, and DevOps best practices like CI/CD and API security.
